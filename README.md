@@ -1,6 +1,6 @@
 # Unit 2 - Classification Project
 
-This contains a project where machine learning classification is done for
+This README.md file provides an overview on machine learning classification project that was done for
 a school program.
 
 &nbsp;
@@ -65,41 +65,75 @@ I wanted to explore different classifcation models for customer churn. Three cla
 * Decision Trees
 * Logistic Regression (Ridge, LASSO, ElasticNet)
 
+On top of this, I wanted to experiment with Kaplan-Meier survival analysis curves to compare contract groups and their churns.
+
 &nbsp;
 
 ## Number Of Churns By Contract (Image)
 
+As a part of the initial exploratory data analysis, the image below shows the number of churns by contract.
 
+&nbsp;
+
+![churnCountsByContract](churnCounts_contract.png)
 
 ## Survival Analysis Kaplan-Meier Usage & Insights
 
 Survival analysis Kaplan Meier Curves were included to showcase the difference in contract plan groups and their churns. The event of interest is Churn and the time is the customer tenure time.
 
 The probability of a month-to-month customer staying with the telco company is lower versus those who are in one-year or two-year plans.
-
-<put_image>
+This is clearly shown from the image below.
 
 &nbsp;
 
+![KM_curve_Contract](Churn_byContract.png)
+
+&nbsp;
 
 # Decision Tree Model
 
+## Decison Tree Model & Scores
+
+The main features used in the Decision Tree are MonthlyCharges, is_monthly (0= F, 1 = T) and Tenure. Grid Search was used for selecting a final model with F1-Score metric.
 
 
+Metric | Metric Score
+------------ | -------------
+Train F1-Score | 0.609
+Validation Set F1-Score | 0.628
 
 &nbsp;
+
+## Decision Tree Insights
+
+From 7043 customers in the dataset:
+
+* 340 churns from not month-to-month customers
+* 393 churns where the customer was month-to-month, paying < $68/mth with customer tenure months < 3.5.
+* 1747 churns from month-to-month & paying more than $68/mth
+
+&nbsp;
+---
 
 # K-Nearest Neighbours
 
+K-Nearest Neighbours was experimented with as a classifier model but was not showcased in the main presentation slides. KNN models were not considered as the models were biased to points near the test data points.
 
-&nbsp;
-
-# Logistic Regression
-
-
+Two KNN models were selected with a grid search with one grid search for recall and the other for f1-score. Features of interest were MonthlyCharges, tenure (Months), is_monthly.
 
 
 &nbsp;
+---
+
+# Logistic Regression Model Insights
+
+* Ridge Regression penalty used for final model with liblinear and C = 0.01
+* tenure coefficient is -0.74: As the customer stays longer there are less likely to churn.
+* MonthlyCharges coefficient is 0.735: Higher monthly charges can lead to churn.
+* is_monthly coefficient is 0.654: If the customer is on a monthly plan they are more likely to churn.
+
+
+---
 
 # Recommendations For Reducing Customer Churn
 
